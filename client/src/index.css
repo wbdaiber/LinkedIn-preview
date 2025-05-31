@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  
+  /* Dark theme colors matching PRD */
+  --dark-100: 210 11% 10%; /* #1a1a1c */
+  --dark-200: 210 11% 7%; /* #121214 */
+  --dark-300: 210 11% 5%; /* #0c0c0e */
+  --light-100: 0 0% 100%; /* #ffffff */
+  --blue-300: 207 100% 50%; /* #0085ff */
+  --blue-400: 207 100% 40%; /* #0066cc */
+}
+
+.dark {
+  --background: 210 11% 7%;
+  --foreground: 0 0% 100%;
+  --muted: 210 11% 10%;
+  --muted-foreground: 0 0% 70%;
+  --popover: 210 11% 7%;
+  --popover-foreground: 0 0% 100%;
+  --card: 210 11% 10%;
+  --card-foreground: 0 0% 100%;
+  --border: 0 0% 100% / 0.1;
+  --input: 210 11% 10%;
+  --primary: 207 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 11% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --accent: 210 11% 10%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 63% 31%;
+  --destructive-foreground: 0 0% 100%;
+  --ring: 240 5% 84%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom utility classes for the dark theme */
+.bg-dark-100 {
+  background-color: hsl(var(--dark-100));
+}
+
+.bg-dark-200 {
+  background-color: hsl(var(--dark-200));
+}
+
+.bg-dark-300 {
+  background-color: hsl(var(--dark-300));
+}
+
+.text-light-100 {
+  color: hsl(var(--light-100));
+}
+
+.bg-blue-300 {
+  background-color: hsl(var(--blue-300));
+}
+
+.bg-blue-400 {
+  background-color: hsl(var(--blue-400));
+}
+
+.text-blue-300 {
+  color: hsl(var(--blue-300));
+}
+
+.text-blue-400 {
+  color: hsl(var(--blue-400));
+}
+
+.border-white\/10 {
+  border-color: rgb(255 255 255 / 0.1);
+}
+
+.border-white\/20 {
+  border-color: rgb(255 255 255 / 0.2);
+}
+
+.text-light-100\/70 {
+  color: rgb(255 255 255 / 0.7);
+}
+
+.text-light-100\/60 {
+  color: rgb(255 255 255 / 0.6);
+}
+
+.text-light-100\/50 {
+  color: rgb(255 255 255 / 0.5);
+}
+
+.text-light-100\/40 {
+  color: rgb(255 255 255 / 0.4);
+}
+
+.text-light-100\/90 {
+  color: rgb(255 255 255 / 0.9);
+}
+
+.placeholder\:text-light-100\/40::placeholder {
+  color: rgb(255 255 255 / 0.4);
+}
+
+/* Animation for toast notifications */
+.toast-enter {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.toast-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 300ms ease-out;
+}
+
+.toast-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.toast-exit-active {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 300ms ease-out;
+}
+
+/* Ensure minimum touch targets for mobile */
+@media (max-width: 768px) {
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}

@@ -1,0 +1,283 @@
+# LinkedIn Message Tool - Product Requirements Document
+
+## Executive Summary
+
+A web-based tool that helps users craft effective LinkedIn messages while staying within platform constraints. The tool provides real-time character count alerts and visual feedback to optimize LinkedIn outreach efforts.
+
+## Product Overview
+
+### Problem Statement
+LinkedIn users struggle to craft concise, effective messages that fit within the platform's character limits:
+- Message previews are cut off at 58 characters
+- Total messages are limited to 400 characters
+- Users need guidance on tone and structure for different outreach scenarios
+
+### Solution
+A minimally viable web application that provides:
+- Real-time character counting with visual alerts
+- Clear visual feedback for LinkedIn's character constraints
+- Message composition interface optimized for LinkedIn's limits
+
+### Target Users
+- Sales professionals conducting LinkedIn outreach
+- Recruiters reaching out to candidates
+- Business development representatives
+- Entrepreneurs and freelancers networking on LinkedIn
+
+## Core Features
+
+### 1. Real-Time Character Monitoring
+
+#### Message Preview Alert (58 Characters)
+- **Trigger**: When message text exceeds 58 characters
+- **Visual Indicator**: Yellow warning background/border
+- **Text Display**: Show exactly what will appear in LinkedIn preview
+- **Counter**: Display "Preview: X/58 characters"
+
+#### Total Message Alert (400 Characters)
+- **Trigger**: When message text approaches and exceeds 400 characters
+- **Warning at 350 characters**: Orange indicator
+- **Error at 400+ characters**: Red indicator with prevention of further typing
+- **Counter**: Display "Total: X/400 characters"
+
+### 2. Message Composition Interface
+
+#### Main Text Area
+- Large, resizable textarea for message composition
+- Real-time character counting
+- Visual preview of how message will appear on LinkedIn
+- Clear formatting that mimics LinkedIn's message interface
+
+#### Character Count Display
+- Prominent counter showing both preview and total character counts
+- Color-coded based on proximity to limits:
+  - Green: Safe zone
+  - Yellow: Preview limit warning
+  - Orange: Approaching total limit
+  - Red: Over limit
+
+### 3. Copy and Export Features
+
+#### One-Click Copy
+- **Copy Message**: Single button to copy final message to clipboard
+- **Visual Confirmation**: Brief "Copied!" notification
+- **Mobile Optimization**: Large, thumb-friendly copy buttons
+
+#### Message History (Session-Based)
+- Recent messages stored in session for easy re-access
+- Quick copy from message history
+- Clear session data option
+
+### 4. Analytics and Success Tracking
+
+#### Character Efficiency Metrics
+- **Preview Optimization Rate**: % of messages that stay under 58 characters
+- **Character Utilization**: Average characters used vs. limit
+- **Message Completion Rate**: How often users finish and copy messages
+
+#### Usage Analytics (Local Storage)
+- Messages created per session
+- Most efficient message lengths
+- Mobile vs. desktop usage patterns
+
+#### Success Metrics Dashboard
+- Simple visual indicators of writing efficiency
+- Personal improvement tracking over time
+- Export analytics data option
+
+### 5. Message Preview Simulation
+- Visual representation of how the message will appear in LinkedIn
+- Shows truncated preview text (first 58 characters)
+- Displays full message in expandable format
+
+## Technical Requirements
+
+### Development Platform
+- **Primary**: Replit for initial development and testing
+- **Migration Target**: WordPress via ReactPress plugin
+- **Framework**: React-based for ReactPress compatibility
+- **Authentication**: Session-based only (no user accounts)
+
+### Frontend Requirements
+- **Mobile-first responsive design** (high priority)
+- Real-time text analysis and character counting
+- Clean, intuitive user interface optimized for mobile screens
+- Fast rendering and minimal latency
+- One-click copy functionality for generated messages
+- **Dark Theme Integration**: Match existing site's dark aesthetic
+- **Tailwind CSS Framework**: Use existing utility classes for consistency
+
+### Backend Requirements
+- Session storage for message history and analytics
+- Local storage for analytics tracking
+- No persistent user data storage required
+
+### Performance Requirements
+- Character counting must be instantaneous
+- Page load time under 3 seconds
+- Mobile-optimized loading and interactions
+
+### Mobile-First Design Requirements
+- **Touch-Friendly Interface**: Minimum 44px touch targets
+- **Thumb Navigation**: Key actions accessible with one hand
+- **Responsive Breakpoints**: 
+  - Mobile: 320px - 768px
+  - Tablet: 768px - 1024px
+  - Desktop: 1024px+
+- **Progressive Enhancement**: Core functionality works on all devices
+- **Fast Mobile Loading**: Optimized for slower mobile connections
+
+## Design System Integration
+
+### Color Palette (from Dark Theme Simplicity)
+- **Background**: `bg-dark-200` (#121214) - Primary dark background
+- **Secondary Background**: `bg-dark-100` (#1a1a1c) - Cards and containers
+- **Accent Background**: `bg-dark-300` (#0c0c0e) - Deeper sections
+- **Primary Blue**: `bg-blue-300` (#0085ff) - Primary actions and highlights
+- **Text Primary**: `text-light-100` (#ffffff) - Main text color
+- **Text Secondary**: `text-light-100/70` (70% opacity white) - Secondary text
+- **Text Muted**: `text-light-100/50` (50% opacity white) - Placeholder text
+- **Borders**: `border-white/10` (10% opacity white) - Subtle borders
+
+### Typography
+- **Font Family**: Inter, sans-serif (already loaded)
+- **Headings**: `font-semibold` with appropriate text sizes
+- **Body Text**: `font-normal` with `text-base` or `text-sm`
+- **Monospace**: `font-mono` for character counters
+
+### Component Styles
+- **Buttons**: 
+  - Primary: `bg-blue-300 hover:bg-blue-400 text-white`
+  - Secondary: `bg-dark-100 hover:bg-dark-100/80 border-white/20`
+- **Input Fields**: 
+  - `bg-dark-100 border-white/20 text-light-100 placeholder:text-light-100/40`
+- **Cards**: 
+  - `bg-dark-100 border-white/10 rounded-lg`
+- **Alerts**: 
+  - Warning: `border-yellow-400/30 bg-yellow-400/10`
+  - Error: `border-red-400/30 bg-red-400/10`
+  - Success: `border-green-400/30 bg-green-400/10`
+
+### Spacing and Layout
+- **Container**: Use existing `.container` class with responsive breakpoints
+- **Padding**: Standard spacing scale (p-4, p-6, p-8)
+- **Margins**: Consistent with site's spacing patterns
+- **Border Radius**: `rounded-lg` for main containers, `rounded-md` for smaller elements
+
+### Responsive Breakpoints
+- **Mobile**: 320px - 768px (default)
+- **Tablet**: 768px - 1024px (`md:` prefix)
+- **Desktop**: 1024px+ (`lg:` and `xl:` prefixes)
+
+### Animation and Transitions
+- **Standard Transitions**: `transition-colors duration-200`
+- **Hover Effects**: Subtle scale or color changes
+- **Character Counter Animations**: Smooth color transitions for alerts
+
+## User Experience Flow
+1. User opens the LinkedIn Message Tool
+2. User begins typing message in main text area
+3. Real-time character counters update as they type
+4. Visual alerts appear when approaching/exceeding limits
+5. User reviews message in LinkedIn preview simulation
+6. User copies final message to LinkedIn
+
+### Alternative Flow (History-Based)
+1. User opens tool and views recent messages from session
+2. User selects a previous message to modify
+3. User edits message with real-time feedback
+4. Character limits are monitored during editing
+5. User copies updated message
+
+## Success Metrics
+
+### User Engagement
+- Time spent on tool per session
+- Messages created per user
+- Return usage rate
+- Copy button usage frequency
+
+### Effectiveness Metrics
+- Percentage of messages staying within character limits
+- Character optimization improvement over time
+- Completion rate (users who copy final message)
+
+## Implementation Phases
+
+### Phase 1: Core Functionality (MVP)
+- Basic text area with character counting
+- Visual alerts for both character limits
+- Simple message preview display
+- Copy to clipboard functionality
+
+### Phase 2: Enhanced UX
+- LinkedIn-style preview mockup
+- Message history and session storage
+- Improved visual design and mobile optimization
+
+### Phase 3: Analytics Integration
+- Character efficiency tracking
+- Usage analytics dashboard
+- Local storage for metrics
+
+### Phase 4: WordPress Migration
+- ReactPress plugin integration
+- WordPress-compatible deployment
+- Final testing and optimization
+
+## Technical Considerations
+
+### Replit Development
+- Use React for component structure with Tailwind CSS classes
+- Implement state management for real-time updates
+- Test across different browsers and devices
+- **Style Integration**: Use exact color variables and utility classes from theme
+
+### WordPress Migration via ReactPress
+- Ensure React components use only standard Tailwind utility classes
+- Plan for WordPress hosting environment compatibility
+- Test thoroughly in WordPress environment with existing theme
+- **Theme Compatibility**: Verify dark theme variables are properly inherited
+
+### AI Integration Options
+
+## Risk Mitigation
+
+### Technical Risks
+- **Character Counting Accuracy**: Extensive testing with various text inputs
+- **ReactPress Compatibility**: Early testing with ReactPress plugin
+- **Mobile Performance**: Ensure smooth performance on lower-end devices
+
+### User Experience Risks
+- **Character Limit Learning Curve**: Clear visual feedback and intuitive design
+- **Mobile Usability**: Thorough mobile testing across devices
+
+## Future Enhancements (Post-MVP)
+
+### Advanced Features
+- Message templates library
+- Character efficiency trends over time
+- Integration with LinkedIn for direct posting
+- Analytics export functionality
+
+### Premium Features
+- Advanced analytics dashboard
+- Message effectiveness tracking
+- Custom character limit settings for other platforms
+
+## Acceptance Criteria
+
+### Core Requirements Met When:
+- Character counting is accurate and real-time
+- Visual alerts trigger at correct thresholds (58 and 400 characters)
+- Copy functionality works reliably across devices
+- Tool is fully functional in Replit environment
+- Migration path to WordPress is clearly defined and tested
+- **Design Integration**: Tool looks native to existing dark theme
+
+### Success Indicators:
+- Users can consistently create LinkedIn messages within character limits
+- Copy functionality provides smooth user experience
+- Tool loads quickly and performs smoothly across devices
+- WordPress integration maintains full functionality
+- **Visual Consistency**: No jarring style differences from main site
